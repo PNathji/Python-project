@@ -1,0 +1,49 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+
+    <!-- Include Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Include your custom CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="center">Result</h1>
+        <p class="center">{{ result_message }}</p>
+
+        <!-- Graph container -->
+        <div id="chart-container"></div>
+    </div>
+
+    <!-- Script to render the graph -->
+    <script>
+        var data = [{
+            x: ['MDVP_Fo_Hz', 'MDVP_Fhi_Hz', 'MDVP_Flo_Hz', 'MDVP_Jitter_percent_Hz', 'MDVP_Jitter_abs_Hz', 'MDVP_RAP', 'MDVP_PPQ', 'Jitter_DDP', 'MDVP_Shimmer', 'MDVP_Shimmer_dB', 'Shimmer_APQ3', 'Shimmer_APQ5', 'MDVP_APQ', 'Shimmer_DDA', 'NHR', 'HNR', 'RPDE', 'DFA', 'spread1', 'spread2', 'D2', 'PPE'],
+            y: [{{ c1 }}, {{ c2 }}, {{ c3 }}, {{ c4 }}, {{ c5 }}, {{ c6 }}, {{ c7 }}, {{ c8 }}, {{ c9 }}, {{ c10 }}, {{ c11 }}, {{ c12 }}, {{ c13 }}, {{ c14 }}, {{ c15 }}, {{ c16 }}, {{ c17 }}, {{ c18 }}, {{ c19 }}, {{ c20 }}, {{ c21 }}, {{ c22 }}],
+            type: 'bar',
+            marker: {
+                color: 'rgba(58, 71, 80, 0.6)'
+            }
+        }];
+
+        var layout = {
+            title: 'Feature Values',
+            xaxis: {
+                title: 'Features',
+                tickangle: -45
+            },
+            yaxis: {
+                title: 'Values'
+            }
+        };
+
+        Plotly.newPlot('chart-container', data, layout);
+    </script>
+</body>
+</html>
